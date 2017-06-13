@@ -5,5 +5,20 @@
     <select id="getPropertyById" parameterType="long" resultType="com.gome.fup.propertyhelper.model.Property">
         SELECT * FROM property WHERE id = #{id}
     </select>
+
+    <select id="getPropertyByProjectIdAndGroupName"  resultType="com.gome.fup.propertyhelper.model.Property">
+        SELECT
+            *
+        FROM
+            property
+        WHERE
+            1 = 1
+            <if test="projectId != '' and projectId != null">
+                AND projectId = #{projectId}
+            </if>
+            <if test="groupName != '' and groupName != null">
+                AND groupName LIKE CONCAT('%',#{groupName},'%')
+            </if>
+    </select>
     
 </mapper>

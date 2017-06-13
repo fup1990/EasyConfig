@@ -5,8 +5,9 @@ import com.gome.fup.propertyhelper.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * 配置管理Controller
@@ -24,6 +25,15 @@ public class PropertyController {
         Property property = propertyService.getPropertyById(id);
         mav.setViewName("property");
         mav.addObject("property",property);
+        return mav;
+    }
+
+    @RequestMapping("/getPropertyByParam")
+    public ModelAndView getPropertyByProjectIdAndGroupName(long projectId, String groupName) {
+        ModelAndView mav = new ModelAndView();
+        List<Property> list = propertyService.getPropertyByProjectIdAndGroupName(projectId, groupName);
+        mav.addObject("list",list);
+        mav.setViewName("list");
         return mav;
     }
 }
