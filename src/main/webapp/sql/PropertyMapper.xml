@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gome.fup.propertyhelper.mapper.PropertyMapper">
+    
+    <select id="getPropertyById" parameterType="long" resultType="com.gome.fup.propertyhelper.model.Property">
+        SELECT * FROM property WHERE id = #{id}
+    </select>
+
+    <select id="getPropertyByProjectIdAndGroupName"  resultType="com.gome.fup.propertyhelper.model.Property">
+        SELECT
+            *
+        FROM
+            property
+        WHERE
+            1 = 1
+            <if test="projectId != '' and projectId != null">
+                AND projectId = #{projectId}
+            </if>
+            <if test="groupName != '' and groupName != null">
+                AND groupName LIKE CONCAT('%',#{groupName},'%')
+            </if>
+    </select>
+
+    <insert id="inser" parameterType="com.gome.fup.propertyhelper.model.Property">
+        INSERT INTO property (
+            <if test="id != null and id != ''">
+                id,
+            </if>
+            <if test="projectId != null and projectId != ''">
+                projectId,
+            </if>
+            <if test="groupName != null and groupName != ''">
+                groupName,
+            </if>
+            <if test="data != null and data != ''">
+                data
+            </if>
+        )
+        VALUES
+        (
+            <if test="id != null and id != ''">
+                #{id},
+            </if>
+            <if test="projectId != null and projectId != ''">
+                #{projectId},
+            </if>
+            <if test="groupName != null and groupName != ''">
+                #{groupName},
+            </if>
+            <if test="data != null and data != ''">
+                #{data}
+            </if>
+        )
+    </insert>
+    
+    <update id="edit" parameterType="com.gome.fup.propertyhelper.model.Property">
+        UPDATE property
+        <set>
+            <if test="projectId != null and projectId != ''">
+                projectId = #{projectId},
+            </if>
+            <if test="groupName != null and groupName != ''">
+                groupName = #{groupName},
+            </if>
+            <if test="data != null and data != ''">
+                data = #{data}
+            </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+</mapper>

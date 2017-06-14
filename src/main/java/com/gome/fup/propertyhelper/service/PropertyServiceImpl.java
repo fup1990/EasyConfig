@@ -25,4 +25,14 @@ public class PropertyServiceImpl implements PropertyService{
     public List<Property> getPropertyByProjectIdAndGroupName(long projectId, String groupName) {
         return propertyMapper.getPropertyByProjectIdAndGroupName(projectId, groupName);
     }
+
+    @Override
+    public void save(Property property) {
+        propertyMapper.inser(property);
+    }
+
+    @Override
+    public void edit(Property property) {
+        propertyMapper.edit(property);
+    }
 }

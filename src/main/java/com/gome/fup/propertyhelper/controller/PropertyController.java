@@ -14,26 +14,54 @@ import java.util.List;
  * Created by fupeng-ds on 2017/6/13.
  */
 @Controller
+@RequestMapping("/property")
 public class PropertyController {
 
     @Autowired
     private PropertyService propertyService;
 
-    @RequestMapping("/getProperty")
+    @RequestMapping("/info")
     public ModelAndView getPropertyById(long id) {
         ModelAndView mav = new ModelAndView();
         Property property = propertyService.getPropertyById(id);
-        mav.setViewName("property");
+        mav.setViewName("property/info");
         mav.addObject("property",property);
         return mav;
     }
 
-    @RequestMapping("/getPropertyByParam")
+    @RequestMapping("/search")
     public ModelAndView getPropertyByProjectIdAndGroupName(long projectId, String groupName) {
         ModelAndView mav = new ModelAndView();
         List<Property> list = propertyService.getPropertyByProjectIdAndGroupName(projectId, groupName);
-        mav.addObject("list",list);
-        mav.setViewName("list");
+        mav.addObject("list", list);
+        mav.setViewName("property/list");
+        return mav;
+    }
+
+    @RequestMapping("/edit")
+    public ModelAndView edit(long id) {
+        ModelAndView mav = new ModelAndView();
+        Property property = propertyService.getPropertyById(id);
+        mav.setViewName("property/edit");
+        mav.addObject("property", property);
+        return mav;
+    }
+
+    @RequestMapping("/add")
+    public ModelAndView add() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("property/add");
+        return mav;
+    }
+
+    @RequestMapping("/save")
+    public ModelAndView save(Property property) {
+        ModelAndView mav = new ModelAndView("redirect:/");
+        if (null != property.getId()) {
+            propertyService.edit(property);
+        } else {
+            propertyService.save(property);
+        }
         return mav;
     }
 }

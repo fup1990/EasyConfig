@@ -1,33 +1,34 @@
 package com.gome.fup.propertyhelper.model;
 
 import java.io.Serializable;
+import java.util.Properties;
 
 /**
  * Created by fupeng-ds on 2017/6/13.
  */
 public class Property implements Serializable{
 
-    private long id;
+    private Long id;
 
-    private long projectId;
+    private Long projectId;
 
     private String groupName;
 
     private String data;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getProjectId() {
+    public Long getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(long projectId) {
+    public void setProjectId(Long projectId) {
         this.projectId = projectId;
     }
 

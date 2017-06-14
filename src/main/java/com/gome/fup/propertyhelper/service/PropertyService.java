@@ -12,4 +12,8 @@ public interface PropertyService {
     Property getPropertyById(long id);
 
     List<Property> getPropertyByProjectIdAndGroupName(long projectId, String groupName);
+
+    void save(Property property);
+
+    void edit(Property property);
 }

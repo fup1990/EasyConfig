@@ -14,7 +14,13 @@
     <context:component-scan base-package="com.gome.fup.propertyhelper.controller"/>
     <mvc:annotation-driven/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <mvc:resources location="/" mapping="/**/*.html"/>
+    <mvc:resources location="/" mapping="/**/*.js"/>
+    <mvc:resources location="/" mapping="/**/*.css"/>
+    <mvc:resources location="/" mapping="/**/*.png"/>
+    <mvc:resources location="/" mapping="/**/*.gif"/>
 </beans>

@@ -13,4 +13,8 @@ public interface PropertyMapper {
     Property getPropertyById(long id);
 
     List<Property> getPropertyByProjectIdAndGroupName(@Param("projectId")long projectId, @Param("groupName")String groupName);
+
+    void inser(Property property);
+
+    void edit(Property property);
 }
