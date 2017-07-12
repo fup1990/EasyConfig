@@ -6,15 +6,26 @@
          http://www.springframework.org/schema/context
          http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	<!-- 扫描注解 -->
-	<context:component-scan base-package="com.gome.fup.propertyhelper">
+	<context:component-scan base-package="com.gome.fup.easyconfig">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 		<context:exclude-filter type="annotation" expression="org.springframework.cache.annotation.EnableCaching" />
 	</context:component-scan>
 
 	<!-- 引入配置文件 -->
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:config/jdbc.properties" />
+		<property name="locations">
+			<array>
+				<value>classpath:config/jdbc.properties</value>
+				<value>classpath:config/system.properties</value>
+			</array>
+		</property>
 	</bean>
 
 	<import resource="dataSource.xml" />
+
+	<bean id="broker" class="com.gome.fup.easyconfig.broker.ConfigBroker">
+		<property name="host" value="${sys.broker.host}" />
+		<property name="port" value="${sys.broker.port}" />
+	</bean>
+
 </beans>
