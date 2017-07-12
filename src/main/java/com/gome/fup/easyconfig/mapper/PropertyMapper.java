@@ -1,6 +1,6 @@
-package com.gome.fup.propertyhelper.mapper;
+package com.gome.fup.easyconfig.mapper;
 
-import com.gome.fup.propertyhelper.model.Property;
+import com.gome.fup.easyconfig.model.Property;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.gome.fup.propertyhelper.controller;
+package com.gome.fup.easyconfig.controller;
 
-import com.gome.fup.propertyhelper.model.Property;
-import com.gome.fup.propertyhelper.service.PropertyService;
+import com.gome.fup.easyconfig.service.PropertyService;
+import com.gome.fup.easyconfig.model.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

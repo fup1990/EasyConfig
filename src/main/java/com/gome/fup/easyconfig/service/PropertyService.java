@@ -1,6 +1,6 @@
-package com.gome.fup.propertyhelper.service;
+package com.gome.fup.easyconfig.service;
 
-import com.gome.fup.propertyhelper.model.Property;
+import com.gome.fup.easyconfig.model.Property;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package com.gome.fup.propertyhelper.service;
+package com.gome.fup.easyconfig.service;
 
-import com.gome.fup.propertyhelper.mapper.PropertyMapper;
-import com.gome.fup.propertyhelper.model.Property;
+import com.gome.fup.easyconfig.mapper.PropertyMapper;
+import com.gome.fup.easyconfig.model.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.gome.fup.propertyhelper.model;
+package com.gome.fup.easyconfig.model;
 
 import java.io.Serializable;
 import java.util.Properties;

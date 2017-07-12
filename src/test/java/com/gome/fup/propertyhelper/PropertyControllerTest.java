@@ -1,7 +1,7 @@
 package com.gome.fup.propertyhelper;
 
-import com.gome.fup.propertyhelper.model.Property;
-import com.gome.fup.propertyhelper.service.PropertyService;
+import com.gome.fup.easyconfig.model.Property;
+import com.gome.fup.easyconfig.service.PropertyService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
