@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gome.fup.easyconfig.mapper.PropertyMapper">
+<mapper namespace="com.gome.fup.easyconfig.mapper.ConfigMapper">
     
-    <select id="getPropertyById" parameterType="long" resultType="com.gome.fup.easyconfig.model.Property">
-        SELECT * FROM property WHERE id = #{id}
+    <select id="getPropertyById" parameterType="long" resultType="com.gome.fup.easyconfig.model.Config">
+        SELECT * FROM config WHERE id = #{id}
     </select>
 
-    <select id="getPropertyByProjectIdAndGroupName"  resultType="com.gome.fup.easyconfig.model.Property">
+    <select id="getPropertyByProjectIdAndGroupName"  resultType="com.gome.fup.easyconfig.model.Config">
         SELECT
             *
         FROM
-            property
+            config
         WHERE
             1 = 1
             <if test="projectId != '' and projectId != null">
@@ -21,8 +21,8 @@
             </if>
     </select>
 
-    <insert id="inser" parameterType="com.gome.fup.easyconfig.model.Property">
-        INSERT INTO property (
+    <insert id="inser" parameterType="com.gome.fup.easyconfig.model.Config">
+        INSERT INTO config (
             <if test="id != null and id != ''">
                 id,
             </if>
@@ -53,8 +53,8 @@
         )
     </insert>
     
-    <update id="edit" parameterType="com.gome.fup.easyconfig.model.Property">
-        UPDATE property
+    <update id="edit" parameterType="com.gome.fup.easyconfig.model.Config">
+        UPDATE config
         <set>
             <if test="projectId != null and projectId != ''">
                 projectId = #{projectId},

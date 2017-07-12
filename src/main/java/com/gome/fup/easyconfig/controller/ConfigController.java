@@ -1,7 +1,7 @@
 package com.gome.fup.easyconfig.controller;
 
-import com.gome.fup.easyconfig.service.PropertyService;
-import com.gome.fup.easyconfig.model.Property;
+import com.gome.fup.easyconfig.model.Config;
+import com.gome.fup.easyconfig.service.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,24 +15,24 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/property")
-public class PropertyController {
+public class ConfigController {
 
     @Autowired
-    private PropertyService propertyService;
+    private ConfigService configService;
 
     @RequestMapping("/info")
     public ModelAndView getPropertyById(long id) {
         ModelAndView mav = new ModelAndView();
-        Property property = propertyService.getPropertyById(id);
+        Config config = configService.getPropertyById(id);
         mav.setViewName("property/info");
-        mav.addObject("property",property);
+        mav.addObject("property",config);
         return mav;
     }
 
     @RequestMapping("/search")
     public ModelAndView getPropertyByProjectIdAndGroupName(long projectId, String groupName) {
         ModelAndView mav = new ModelAndView();
-        List<Property> list = propertyService.getPropertyByProjectIdAndGroupName(projectId, groupName);
+        List<Config> list = configService.getPropertyByProjectIdAndGroupName(projectId, groupName);
         mav.addObject("list", list);
         mav.setViewName("property/list");
         return mav;
@@ -41,9 +41,9 @@ public class PropertyController {
     @RequestMapping("/edit")
     public ModelAndView edit(long id) {
         ModelAndView mav = new ModelAndView();
-        Property property = propertyService.getPropertyById(id);
+        Config config = configService.getPropertyById(id);
         mav.setViewName("property/edit");
-        mav.addObject("property", property);
+        mav.addObject("property", config);
         return mav;
     }
 
@@ -55,12 +55,12 @@ public class PropertyController {
     }
 
     @RequestMapping("/save")
-    public ModelAndView save(Property property) {
+    public ModelAndView save(Config config) {
         ModelAndView mav = new ModelAndView("redirect:/");
-        if (null != property.getId()) {
-            propertyService.edit(property);
+        if (null != config.getId()) {
+            configService.edit(config);
         } else {
-            propertyService.save(property);
+            configService.save(config);
         }
         return mav;
     }

@@ -1,7 +1,7 @@
 package com.gome.fup.propertyhelper;
 
 import com.gome.fup.easyconfig.model.Property;
-import com.gome.fup.easyconfig.service.PropertyService;
+import com.gome.fup.easyconfig.service.ConfigService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class PropertyControllerTest {
 
     @Autowired
-    private PropertyService propertyService;
+    private ConfigService propertyService;
 
     @Test
     public void test() {

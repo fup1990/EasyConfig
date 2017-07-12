@@ -6,7 +6,7 @@ import java.util.Properties;
 /**
  * Created by fupeng-ds on 2017/6/13.
  */
-public class Property implements Serializable{
+public class Config implements Serializable{
 
     private Long id;
 
@@ -50,7 +50,7 @@ public class Property implements Serializable{
 
     @Override
     public String toString() {
-        return "Property{" +
+        return "Config{" +
                 "id=" + id +
                 ", projectId=" + projectId +
                 ", groupName='" + groupName + '\'' +
