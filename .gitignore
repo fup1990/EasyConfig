@@ -1,0 +1,5 @@
+.idea/compiler.xml
+.idea/.name
+.idea/encodings.xml
+target/classes/com/gome/fup/easyconfig/controller/PropertyController.class
+*.class
