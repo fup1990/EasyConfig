@@ -1,2 +1,2 @@
-# propertyhelper
+# EasyConfig
 配置文件管理系统
