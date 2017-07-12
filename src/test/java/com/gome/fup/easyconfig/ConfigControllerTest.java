@@ -1,4 +1,4 @@
-package com.gome.fup.propertyhelper;
+package com.gome.fup.easyconfig;
 
 import com.gome.fup.easyconfig.model.Property;
 import com.gome.fup.easyconfig.service.ConfigService;
@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:spring-*.xml"})
-public class PropertyControllerTest {
+public class ConfigControllerTest {
 
     @Autowired
     private ConfigService propertyService;
