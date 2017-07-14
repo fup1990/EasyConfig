@@ -13,7 +13,7 @@ public interface ConfigService {
 
     List<Config> getPropertyByProjectIdAndGroupName(long projectId, String groupName);
 
-    void save(Config config);
+    void save(Config config, String data);
 
     void edit(Config config);
 }

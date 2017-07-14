@@ -17,8 +17,8 @@
       <tr>
         <td>${property.projectId}</td>
         <td>${property.groupName}</td>
-        <td><a href="<%=request.getContextPath() %>/property/info?id=${property.id}">查看</a></td>
-        <td><a href="<%=request.getContextPath() %>/property/edit?id=${property.id}">编辑</a></td>
+        <td><a href="<%=request.getContextPath() %>/info?id=${property.id}">查看</a></td>
+        <td><a href="<%=request.getContextPath() %>/edit?id=${property.id}">编辑</a></td>
       </tr>
     </c:forEach>
   </table>

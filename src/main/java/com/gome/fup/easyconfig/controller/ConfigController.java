@@ -1,12 +1,14 @@
 package com.gome.fup.easyconfig.controller;
 
 import com.gome.fup.easyconfig.model.Config;
+import com.gome.fup.easyconfig.model.Metadata;
 import com.gome.fup.easyconfig.service.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +16,6 @@ import java.util.List;
  * Created by fupeng-ds on 2017/6/13.
  */
 @Controller
-@RequestMapping("/property")
 public class ConfigController {
 
     @Autowired
@@ -55,13 +56,17 @@ public class ConfigController {
     }
 
     @RequestMapping("/save")
-    public ModelAndView save(Config config) {
+    public ModelAndView save(Long projectId, String groupName, String data) {
         ModelAndView mav = new ModelAndView("redirect:/");
-        if (null != config.getId()) {
-            configService.edit(config);
-        } else {
-            configService.save(config);
-        }
+        configService.save(biuldConfig(projectId, groupName, data), data);
         return mav;
     }
+
+    private Config biuldConfig(Long projectId, String groupName, String data) {
+        Config config = new Config();
+        config.setProjectId(projectId);
+        config.setGroupName(groupName);
+        return config;
+    }
+
 }

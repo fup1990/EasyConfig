@@ -1,6 +1,7 @@
 package com.gome.fup.easyconfig.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -14,7 +15,7 @@ public class Config implements Serializable{
 
     private String groupName;
 
-    private String data;
+    private List<Metadata> metadataList;
 
     public Long getId() {
         return id;
@@ -40,21 +41,11 @@ public class Config implements Serializable{
         this.groupName = groupName;
     }
 
-    public String getData() {
-        return data;
+    public List<Metadata> getMetadataList() {
+        return metadataList;
     }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "Config{" +
-                "id=" + id +
-                ", projectId=" + projectId +
-                ", groupName='" + groupName + '\'' +
-                ", data='" + data + '\'' +
-                '}';
+    public void setMetadataList(List<Metadata> metadataList) {
+        this.metadataList = metadataList;
     }
 }

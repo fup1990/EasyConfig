@@ -12,7 +12,7 @@
     <title></title>
 </head>
 <body>
-  <form action="<%=request.getContextPath()%>/property/save">
+  <form action="<%=request.getContextPath()%>/save">
     项目编号:<input type="text" name="projectId" value=""><br>
     分组名称:<input type="text" name="groupName" value=""><br>
     内容:<textarea name="data"></textarea>

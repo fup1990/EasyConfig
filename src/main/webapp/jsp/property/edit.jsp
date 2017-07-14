@@ -12,7 +12,7 @@
     <title>propertyhelper</title>
 </head>
 <body>
-  <form action="<%=request.getContextPath()%>/property/save">
+  <form action="<%=request.getContextPath()%>/save">
     <input type="hidden" name="id" value="${property.id}"><br>
     项目编号:<input type="text" name="projectId" value="${property.projectId}"><br>
     分组名称:<input type="text" name="groupName" value="${property.groupName}"><br>
