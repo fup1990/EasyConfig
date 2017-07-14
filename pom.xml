@@ -271,6 +271,12 @@
             <artifactId>netty-all</artifactId>
             <version>4.0.24.Final</version>
         </dependency>
+        <!-- kryo序列化 -->
+        <dependency>
+            <groupId>com.esotericsoftware.kryo</groupId>
+            <artifactId>kryo</artifactId>
+            <version>2.24.0</version>
+        </dependency>
     </dependencies>
 
     <build>
