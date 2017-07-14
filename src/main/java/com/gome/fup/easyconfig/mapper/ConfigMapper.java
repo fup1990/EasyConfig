@@ -14,7 +14,7 @@ public interface ConfigMapper {
 
     List<Config> getPropertyByProjectIdAndGroupName(@Param("projectId")long projectId, @Param("groupName")String groupName);
 
-    Config inser(Config config);
+    Long insert(Config config);
 
     void edit(Config config);
 }

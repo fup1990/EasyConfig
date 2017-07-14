@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gome.fup.easyconfig.mapper.MetadataMapper">
 
-    <insert id="inser" parameterType="com.gome.fup.easyconfig.model.Metadata">
+    <insert id="insert" parameterType="com.gome.fup.easyconfig.model.Metadata">
         INSERT INTO metadata (
             <if test="id != null and id != ''">
                 id,
@@ -11,10 +11,10 @@
                 configId,
             </if>
             <if test="key != null and key != ''">
-                key,
+                key_,
             </if>
             <if test="value != null and value != ''">
-                value
+                value_
             </if>
         )
         VALUES

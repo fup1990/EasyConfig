@@ -21,7 +21,7 @@
             </if>
     </select>
 
-    <insert id="inser" parameterType="com.gome.fup.easyconfig.model.Config">
+    <insert id="insert" parameterType="com.gome.fup.easyconfig.model.Config">
         INSERT INTO config (
             <if test="id != null and id != ''">
                 id,
@@ -30,10 +30,7 @@
                 projectId,
             </if>
             <if test="groupName != null and groupName != ''">
-                groupName,
-            </if>
-            <if test="data != null and data != ''">
-                data
+                groupName
             </if>
         )
         VALUES
@@ -45,10 +42,7 @@
                 #{projectId},
             </if>
             <if test="groupName != null and groupName != ''">
-                #{groupName},
-            </if>
-            <if test="data != null and data != ''">
-                #{data}
+                #{groupName}
             </if>
         )
     </insert>
