@@ -8,29 +8,9 @@ import java.util.Map;
  */
 public class Request implements Serializable{
 
-    private Long id;
-
-    private int status;
-
     private Long projectId;
 
     private String groupName;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public Long getProjectId() {
         return projectId;

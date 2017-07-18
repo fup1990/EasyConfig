@@ -1,5 +1,10 @@
 package com.gome.fup.easyconfig.broker;
 
+import com.gome.fup.easyconfig.common.Request;
+import com.gome.fup.easyconfig.common.Response;
+import com.gome.fup.easyconfig.handler.ConfigHandler;
+import com.gome.fup.easyconfig.handler.DecoderHandler;
+import com.gome.fup.easyconfig.handler.EncoderHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -47,7 +52,10 @@ public class ConfigBroker implements Runnable, InitializingBean{
                         @Override
                         protected void initChannel(SocketChannel socketChannel)
                                 throws Exception {
-                            socketChannel.pipeline();
+                            socketChannel.pipeline()
+                                    .addLast(new DecoderHandler(Request.class))
+                                    .addLast(new EncoderHandler())
+                                    .addLast(new ConfigHandler());
                         }
                     }).option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
