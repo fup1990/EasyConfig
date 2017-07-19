@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gome.fup.easyconfig.mapper.MetadataMapper">
+
+    <insert id="insert" parameterType="com.gome.fup.easyconfig.common.Metadata">
+        INSERT INTO metadata (
+            <if test="id != null and id != ''">
+                id,
+            </if>
+            <if test="configId != null and configId != ''">
+                configId,
+            </if>
+            <if test="key != null and key != ''">
+                key_,
+            </if>
+            <if test="value != null and value != ''">
+                value_
+            </if>
+        )
+        VALUES
+        (
+            <if test="id != null and id != ''">
+                #{id},
+            </if>
+            <if test="configId != null and configId != ''">
+                #{configId},
+            </if>
+            <if test="key != null and key != ''">
+                #{key},
+            </if>
+            <if test="value != null and value != ''">
+                #{value}
+            </if>
+        )
+    </insert>
+
+</mapper>
