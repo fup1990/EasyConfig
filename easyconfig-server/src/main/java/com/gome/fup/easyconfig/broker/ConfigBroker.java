@@ -4,6 +4,7 @@ import com.gome.fup.easyconfig.common.Request;
 import com.gome.fup.easyconfig.handler.ConfigHandler;
 import com.gome.fup.easyconfig.handler.DecoderHandler;
 import com.gome.fup.easyconfig.handler.EncoderHandler;
+import com.gome.fup.easyconfig.service.ConfigService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -14,6 +15,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,6 +24,7 @@ import java.util.concurrent.Executors;
 /**
  * Created by fupeng-ds on 2017/7/12.
  */
+@Component
 public class ConfigBroker implements Runnable, InitializingBean{
 
     private final Logger logger = Logger.getLogger(this.getClass());
@@ -30,6 +34,9 @@ public class ConfigBroker implements Runnable, InitializingBean{
     private String host;
 
     private int port;
+
+    @Autowired
+    private ConfigService configService;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -54,7 +61,7 @@ public class ConfigBroker implements Runnable, InitializingBean{
                             socketChannel.pipeline()
                                     .addLast(new DecoderHandler(Request.class))
                                     .addLast(new EncoderHandler())
-                                    .addLast(new ConfigHandler());
+                                    .addLast(new ConfigHandler(configService));
                         }
                     }).option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);

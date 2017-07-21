@@ -33,4 +33,7 @@ public class ConfigHandler extends SimpleChannelInboundHandler<Request> {
     }
 
 
+    public ConfigHandler(ConfigService configService) {
+        this.configService = configService;
+    }
 }
