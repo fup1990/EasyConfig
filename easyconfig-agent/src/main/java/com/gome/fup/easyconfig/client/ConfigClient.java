@@ -67,10 +67,6 @@ public class ConfigClient extends SimpleChannelInboundHandler<Response> {
         return response;
     }
 
-    protected Properties loadConfig(Long projectId, String groupName) {
-        return loadConfig(projectId, groupName, null);
-    }
-
     protected Properties loadConfig(Long projectId, String groupName, String key) {
         Request request = getRequest(projectId, groupName, key);
         Response response = send(request);
