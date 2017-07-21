@@ -11,6 +11,8 @@ public class Request implements Serializable{
 
     private String groupName;
 
+    private String key;
+
     public Long getProjectId() {
         return projectId;
     }
@@ -25,5 +27,13 @@ public class Request implements Serializable{
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

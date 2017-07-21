@@ -68,7 +68,11 @@ public class ConfigClient extends SimpleChannelInboundHandler<Response> {
     }
 
     protected Properties loadConfig(Long projectId, String groupName) {
-        Request request = getRequest(projectId, groupName);
+        return loadConfig(projectId, groupName, null);
+    }
+
+    protected Properties loadConfig(Long projectId, String groupName, String key) {
+        Request request = getRequest(projectId, groupName, key);
         Response response = send(request);
         return format(response);
     }
@@ -90,10 +94,11 @@ public class ConfigClient extends SimpleChannelInboundHandler<Response> {
     }
 
 
-    private Request getRequest(Long projectId, String groupName) {
+    private Request getRequest(Long projectId, String groupName, String key) {
         Request request = new Request();
         request.setProjectId(projectId);
         request.setGroupName(groupName);
+        request.setKey(key);
         return request;
     }
 

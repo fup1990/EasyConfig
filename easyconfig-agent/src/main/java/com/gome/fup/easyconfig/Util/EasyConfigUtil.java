@@ -13,4 +13,8 @@ public class EasyConfigUtil extends ConfigClient{
     Properties getConfig(Long projectId, String groupName) {
         return loadConfig(projectId, groupName);
     }
+
+    Properties getConfig(Long projectId, String groupName, String key) {
+        return loadConfig(projectId, groupName, key);
+    }
 }
