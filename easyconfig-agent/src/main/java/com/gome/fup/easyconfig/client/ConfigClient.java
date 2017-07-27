@@ -22,9 +22,9 @@ public class ConfigClient extends SimpleChannelInboundHandler<Response> {
 
     private final Object obj = new Object();
 
-    protected String host = "127.0.0.1";
+    protected String host;
 
-    protected int port = 10101;
+    protected int port;
 
     private Response response;
 

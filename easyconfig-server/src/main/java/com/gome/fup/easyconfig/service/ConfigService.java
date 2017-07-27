@@ -11,7 +11,7 @@ public interface ConfigService {
 
     Config getPropertyById(long id);
 
-    List<Config> getPropertyByProjectIdAndGroupName(long projectId, String groupName);
+    List<Config> getPropertyByProjectIdAndGroupName(long projectId, String groupName, String key);
 
     void save(Config config, String data);
 

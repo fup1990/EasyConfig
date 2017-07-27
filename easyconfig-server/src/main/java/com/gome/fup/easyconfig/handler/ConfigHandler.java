@@ -19,7 +19,7 @@ public class ConfigHandler extends SimpleChannelInboundHandler<Request> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Request request) throws Exception {
-        List<Config> configs = configService.getPropertyByProjectIdAndGroupName(request.getProjectId(), request.getGroupName());
+        List<Config> configs = configService.getPropertyByProjectIdAndGroupName(request.getProjectId(), request.getGroupName(), request.getKey());
         Response response = buildResponse(request.getProjectId(), request.getGroupName(), configs);
         ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
     }

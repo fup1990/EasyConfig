@@ -27,8 +27,8 @@ public class ConfigServiceImpl implements ConfigService {
     }
 
     @Override
-    public List<Config> getPropertyByProjectIdAndGroupName(long projectId, String groupName) {
-        return propertyMapper.getPropertyByProjectIdAndGroupName(projectId, groupName);
+    public List<Config> getPropertyByProjectIdAndGroupName(long projectId, String groupName, String key) {
+        return propertyMapper.getPropertyByProjectIdAndGroupName(projectId, groupName, key);
     }
 
     @Override
