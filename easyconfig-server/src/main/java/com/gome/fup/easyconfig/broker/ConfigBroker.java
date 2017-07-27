@@ -24,7 +24,6 @@ import java.util.concurrent.Executors;
 /**
  * Created by fupeng-ds on 2017/7/12.
  */
-@Component
 public class ConfigBroker implements Runnable, InitializingBean{
 
     private final Logger logger = Logger.getLogger(this.getClass());
