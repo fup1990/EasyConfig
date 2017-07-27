@@ -37,7 +37,10 @@
                 AND c.projectId = #{projectId}
             </if>
             <if test="groupName != '' and groupName != null">
-                AND c.groupName LIKE CONCAT('%',#{groupName},'%')
+                AND c.groupName = #{groupName}
+            </if>
+            <if test="key != '' and key != null">
+                AND m.key_ = #{key}
             </if>
     </select>
 
