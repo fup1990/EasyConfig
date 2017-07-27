@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gome.fup.easyconfig.mapper.ConfigMapper">
-    
+
+    <resultMap id="config" type="com.gome.fup.easyconfig.common.Config">
+        <id column="id" property="id" />
+        <result column="projectId" property="projectId" />
+        <result column="groupName" property="groupName" />
+        <collection property="metadataList" ofType="com.gome.fup.easyconfig.common.Metadata" column="configId">
+            <id column="metadataId" property="id" />
+            <result column="configId" property="configId" />
+            <result column="key_" property="key" />
+            <result column="value_" property="value" />
+        </collection>
+    </resultMap>
+
+
     <select id="getPropertyById" parameterType="long" resultType="com.gome.fup.easyconfig.common.Config">
         SELECT * FROM config WHERE id = #{id}
     </select>
 
-    <select id="getPropertyByProjectIdAndGroupName"  resultType="com.gome.fup.easyconfig.common.Config">
+    <select id="getPropertyByProjectIdAndGroupName"  resultMap="config">
         SELECT
-            *
+            c.id AS id,
+            c.projectId AS projectId,
+            c.groupName AS groupName,
+            m.id AS metadataId,
+            m.configId AS configId,
+            m.key_ AS key_,
+            m.value_ AS value_
         FROM
-            config
+            config c
+            LEFT JOIN metadata m ON c.id = m.configId
         WHERE
             1 = 1
             <if test="projectId != '' and projectId != null">
-                AND projectId = #{projectId}
+                AND c.projectId = #{projectId}
             </if>
             <if test="groupName != '' and groupName != null">
-                AND groupName LIKE CONCAT('%',#{groupName},'%')
+                AND c.groupName LIKE CONCAT('%',#{groupName},'%')
             </if>
     </select>
 
