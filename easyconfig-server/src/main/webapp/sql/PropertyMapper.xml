@@ -16,7 +16,18 @@
 
 
     <select id="getPropertyById" parameterType="long" resultType="com.gome.fup.easyconfig.common.Config">
-        SELECT * FROM config WHERE id = #{id}
+        SELECT
+            c.id AS id,
+            c.projectId AS projectId,
+            c.groupName AS groupName,
+            m.id AS metadataId,
+            m.configId AS configId,
+            m.key_ AS key_,
+            m.value_ AS value_
+        FROM
+            config c
+            LEFT JOIN metadata m ON c.id = m.configId
+        WHERE id = #{id}
     </select>
 
     <select id="getPropertyByProjectIdAndGroupName"  resultMap="config">
@@ -37,7 +48,7 @@
                 AND c.projectId = #{projectId}
             </if>
             <if test="groupName != '' and groupName != null">
-                AND c.groupName = #{groupName}
+                AND c.groupName LIKE CONCAT('%',#{groupName},'%')
             </if>
             <if test="key != '' and key != null">
                 AND m.key_ = #{key}
