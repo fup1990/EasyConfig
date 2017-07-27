@@ -10,11 +10,11 @@ import java.util.Properties;
  */
 public class EasyConfigUtil extends ConfigClient{
 
-    Properties getConfig(Long projectId, String groupName) {
+    public Properties getConfig(Long projectId, String groupName) {
         return getConfig(projectId, groupName, null);
     }
 
-    Properties getConfig(Long projectId, String groupName, String key) {
+    public Properties getConfig(Long projectId, String groupName, String key) {
         return loadConfig(projectId, groupName, key);
     }
 }
