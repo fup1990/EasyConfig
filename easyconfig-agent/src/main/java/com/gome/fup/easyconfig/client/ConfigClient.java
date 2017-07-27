@@ -22,9 +22,9 @@ public class ConfigClient extends SimpleChannelInboundHandler<Response> {
 
     private final Object obj = new Object();
 
-    protected String host;
+    protected String host = "127.0.0.1";
 
-    protected int port;
+    protected int port = 10101;
 
     private Response response;
 
@@ -82,6 +82,7 @@ public class ConfigClient extends SimpleChannelInboundHandler<Response> {
         Properties properties = new Properties();
         for (Config config : configs) {
             List<Metadata> metadatas = config.getMetadataList();
+            if (metadatas == null) continue;
             for (Metadata data : metadatas) {
                 properties.put(data.getKey(), data.getValue());
             }
