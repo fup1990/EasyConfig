@@ -8,4 +8,6 @@ import com.gome.fup.easyconfig.common.Metadata;
 public interface MetadataMapper {
 
     void insert(Metadata metadata);
+
+    void deleteByConfigId(Long configId);
 }

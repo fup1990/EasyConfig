@@ -34,4 +34,11 @@
         )
     </insert>
 
+    <delete id="deleteByConfigId" parameterType="long">
+        DELETE
+        FROM
+            metadata
+        WHERE
+            configId = #{configId}
+    </delete>
 </mapper>
