@@ -14,34 +14,35 @@
         </collection>
     </resultMap>
 
+    <sql id="sql_column" >
+        c.id AS id,
+        c.projectId AS projectId,
+        c.groupName AS groupName,
+        m.id AS metadataId,
+        m.configId AS configId,
+        m.key_ AS key_,
+        m.value_ AS value_
+    </sql>
+
+    <sql id="sql_join">
+        LEFT JOIN metadata m ON c.id = m.configId
+    </sql>
 
     <select id="getPropertyById" parameterType="long" resultType="com.gome.fup.easyconfig.common.Config">
         SELECT
-            c.id AS id,
-            c.projectId AS projectId,
-            c.groupName AS groupName,
-            m.id AS metadataId,
-            m.configId AS configId,
-            m.key_ AS key_,
-            m.value_ AS value_
+            <include refid="sql_column" />
         FROM
             config c
-            LEFT JOIN metadata m ON c.id = m.configId
+            <include refid="sql_join" />
         WHERE id = #{id}
     </select>
 
     <select id="getPropertyByProjectIdAndGroupName"  resultMap="config">
         SELECT
-            c.id AS id,
-            c.projectId AS projectId,
-            c.groupName AS groupName,
-            m.id AS metadataId,
-            m.configId AS configId,
-            m.key_ AS key_,
-            m.value_ AS value_
+            <include refid="sql_column" />
         FROM
             config c
-            LEFT JOIN metadata m ON c.id = m.configId
+            <include refid="sql_join" />
         WHERE
             1 = 1
             <if test="projectId != '' and projectId != null">
@@ -79,6 +80,9 @@
                 #{groupName}
             </if>
         )
+        <selectKey resultType="long" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
     
     <update id="edit" parameterType="com.gome.fup.easyconfig.common.Config">
