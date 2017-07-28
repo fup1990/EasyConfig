@@ -15,7 +15,7 @@ public class EasyPropertyPlaceholderConfigurer extends PropertyPlaceholderConfig
 
     public EasyConfigUtil configUtil;
 
-    public Long projectId;
+    public String projectId;
 
     public String groupName;
 
@@ -28,11 +28,11 @@ public class EasyPropertyPlaceholderConfigurer extends PropertyPlaceholderConfig
         }
     }
 
-    public Long getProjectId() {
+    public String getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Long projectId) {
+    public void setProjectId(String projectId) {
         this.projectId = projectId;
     }
 

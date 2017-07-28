@@ -10,7 +10,7 @@ public class Config implements Serializable{
 
     private Long id;
 
-    private Long projectId;
+    private String projectId;
 
     private String groupName;
 
@@ -22,14 +22,6 @@ public class Config implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(Long projectId) {
-        this.projectId = projectId;
     }
 
     public String getGroupName() {
@@ -46,5 +38,13 @@ public class Config implements Serializable{
 
     public void setMetadataList(List<Metadata> metadataList) {
         this.metadataList = metadataList;
+    }
+
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 }

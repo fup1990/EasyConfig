@@ -7,5 +7,5 @@ import com.gome.fup.easyconfig.common.Metadata;
  */
 public interface MetadataMapper {
 
-    Long insert(Metadata metadata);
+    void insert(Metadata metadata);
 }

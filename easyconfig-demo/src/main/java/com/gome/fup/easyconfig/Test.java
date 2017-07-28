@@ -14,7 +14,7 @@ public class Test {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         EasyConfigUtil util = context.getBean(EasyConfigUtil.class);
-        Properties p = util.getConfig(12l, "test1");
+        Properties p = util.getConfig("12", "test1");
         System.out.println(p);
     }
 }

@@ -29,7 +29,7 @@ public class ConfigController {
     }
 
     @RequestMapping("/search")
-    public ModelAndView getPropertyByProjectIdAndGroupName(long projectId, String groupName) {
+    public ModelAndView getPropertyByProjectIdAndGroupName(String projectId, String groupName) {
         ModelAndView mav = new ModelAndView();
         List<Config> list = configService.getPropertyByProjectIdAndGroupName(projectId, groupName, null);
         mav.addObject("list", list);
@@ -54,13 +54,13 @@ public class ConfigController {
     }
 
     @RequestMapping("/save")
-    public ModelAndView save(Long projectId, String groupName, String data) {
+    public ModelAndView save(String projectId, String groupName, String data) {
         ModelAndView mav = new ModelAndView("redirect:/");
         configService.save(buildConfig(projectId, groupName), data);
         return mav;
     }
 
-    private Config buildConfig(Long projectId, String groupName) {
+    private Config buildConfig(String projectId, String groupName) {
         Config config = new Config();
         config.setProjectId(projectId);
         config.setGroupName(groupName);

@@ -12,7 +12,7 @@ public interface ConfigMapper {
 
     Config getPropertyById(long id);
 
-    List<Config> getPropertyByProjectIdAndGroupName(@Param("projectId")long projectId, @Param("groupName")String groupName, @Param("key")String key);
+    List<Config> getPropertyByProjectIdAndGroupName(@Param("projectId")String projectId, @Param("groupName")String groupName, @Param("key")String key);
 
     void insert(Config config);
 

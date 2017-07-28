@@ -11,17 +11,17 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class Response implements Serializable{
 	
-	private Long projectId;
+	private String projectId;
 
 	private String groupName;
 
 	List<Config> configs;
 
-	public Long getProjectId() {
+	public String getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(Long projectId) {
+	public void setProjectId(String projectId) {
 		this.projectId = projectId;
 	}
 

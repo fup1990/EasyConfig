@@ -7,17 +7,17 @@ import java.io.Serializable;
  */
 public class Request implements Serializable{
 
-    private Long projectId;
+    private String projectId;
 
     private String groupName;
 
     private String key;
 
-    public Long getProjectId() {
+    public String getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Long projectId) {
+    public void setProjectId(String projectId) {
         this.projectId = projectId;
     }
 

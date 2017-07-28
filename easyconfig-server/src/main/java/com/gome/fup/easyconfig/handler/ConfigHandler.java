@@ -24,7 +24,7 @@ public class ConfigHandler extends SimpleChannelInboundHandler<Request> {
         ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
     }
 
-    private Response buildResponse(Long projectId, String groupName, List<Config> configs) {
+    private Response buildResponse(String projectId, String groupName, List<Config> configs) {
         Response response = new Response();
         response.setProjectId(projectId);
         response.setGroupName(groupName);

@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `config`;
 CREATE TABLE `config` (
   `id` bigint(64) NOT NULL AUTO_INCREMENT,
-  `projectId` bigint(64) NOT NULL,
+  `projectId` varchar(64) NOT NULL,
   `groupName` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
