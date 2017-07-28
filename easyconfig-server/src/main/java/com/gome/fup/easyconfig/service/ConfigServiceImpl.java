@@ -34,8 +34,8 @@ public class ConfigServiceImpl implements ConfigService {
     @Override
     @Transactional
     public void save(Config config, String data) {
-        Long configId = propertyMapper.insert(config);
-        saveMetadata(configId, data);
+        propertyMapper.insert(config);
+        saveMetadata(config.getId(), data);
     }
 
     private void saveMetadata(Long configId, String data) {
