@@ -12,7 +12,7 @@
     <title>propertyhelper</title>
 </head>
 <body>
-  <form action="<%=request.getContextPath()%>/property/search" method="post">
+  <form action="<%=request.getContextPath()%>/search" method="post">
     项目编号:<input name="projectId" value=""><br>
     分组名称:<input name="groupName" value=""><br>
     <input type="submit" value="查询">

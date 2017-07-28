@@ -54,14 +54,15 @@ public class ConfigController {
     }
 
     @RequestMapping("/save")
-    public ModelAndView save(String projectId, String groupName, String data) {
+    public ModelAndView save(Long id, String projectId, String groupName, String data) {
         ModelAndView mav = new ModelAndView("redirect:/");
-        configService.save(buildConfig(projectId, groupName), data);
+        configService.save(buildConfig(id, projectId, groupName), data);
         return mav;
     }
 
-    private Config buildConfig(String projectId, String groupName) {
+    private Config buildConfig(Long id, String projectId, String groupName) {
         Config config = new Config();
+        config.setId(id);
         config.setProjectId(projectId);
         config.setGroupName(groupName);
         return config;

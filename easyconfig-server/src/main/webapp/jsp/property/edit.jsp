@@ -16,7 +16,11 @@
     <input type="hidden" name="id" value="${property.id}"><br>
     项目编号:<input type="text" name="projectId" value="${property.projectId}"><br>
     分组名称:<input type="text" name="groupName" value="${property.groupName}"><br>
-    内容:<textarea name="data">${property.data}</textarea>
+    内容:<textarea name="data">
+          <c:forEach var="data" items="${property.metadataList}" varStatus="status">
+            ${data.key}=${data.value}<br>
+          </c:forEach>
+        </textarea>
     <input type="submit" value="保存">
     <input type="button" value="返回">
   </form>

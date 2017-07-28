@@ -34,13 +34,18 @@ public class ConfigServiceImpl implements ConfigService {
     @Override
     @Transactional
     public void save(Config config, String data) {
-        propertyMapper.insert(config);
+        if (null == config.getId()) {
+            propertyMapper.insert(config);
+        } else {
+            propertyMapper.edit(config);
+        }
+        metadataMapper.deleteByConfigId(config.getId());
         saveMetadata(config.getId(), data);
     }
 
     private void saveMetadata(Long configId, String data) {
         String separator = System.getProperty("line.separator", "\n");
-        String[] entrySet = data.split(separator);
+        String[] entrySet = data.trim().split(separator);
         for (String entry : entrySet) {
             String[] split = entry.split("=");
             Metadata metadata = new Metadata();

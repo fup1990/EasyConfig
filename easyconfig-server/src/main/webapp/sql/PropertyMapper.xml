@@ -28,13 +28,13 @@
         LEFT JOIN metadata m ON c.id = m.configId
     </sql>
 
-    <select id="getPropertyById" parameterType="long" resultType="com.gome.fup.easyconfig.common.Config">
+    <select id="getPropertyById" parameterType="long" resultMap="config">
         SELECT
             <include refid="sql_column" />
         FROM
             config c
             <include refid="sql_join" />
-        WHERE id = #{id}
+        WHERE c.id = #{id}
     </select>
 
     <select id="getPropertyByProjectIdAndGroupName"  resultMap="config">
@@ -90,9 +90,6 @@
             </if>
             <if test="groupName != null and groupName != ''">
                 groupName = #{groupName},
-            </if>
-            <if test="data != null and data != ''">
-                data = #{data}
             </if>
         </set>
         <where>
