@@ -21,11 +21,11 @@ public class EasyPropertyPlaceholderConfigurer extends PropertyPlaceholderConfig
 
     @Override
     protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess, Properties props) throws BeansException {
-        super.processProperties(beanFactoryToProcess, props);
         Properties config = configUtil.getConfig(projectId, groupName);
         for (Map.Entry<Object, Object> entry : config.entrySet()) {
             props.put(entry.getKey(), entry.getValue());
         }
+        super.processProperties(beanFactoryToProcess, props);
     }
 
     public String getProjectId() {
