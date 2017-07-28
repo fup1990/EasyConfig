@@ -1,7 +1,6 @@
-package com.gome.fup.easyconfig.Util;
+package com.gome.fup.easyconfig.util;
 
 import com.gome.fup.easyconfig.client.ConfigClient;
-import com.gome.fup.easyconfig.common.Config;
 
 import java.util.Properties;
 
