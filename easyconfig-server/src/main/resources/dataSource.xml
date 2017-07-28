@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter" lazy-init="true">
 		<description>状态过滤器</description>
@@ -14,7 +15,6 @@
 	</bean>
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		destroy-method="close" init-method="init" lazy-init="true">
-		<description>只读数据库连接</description>
 		<property name="driverClassName" value="${db.driver}" />
 		<property name="url" value="${db.url}" />
 		<property name="username" value="${db.username}" />
@@ -61,6 +61,9 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+
+	<!--使用注释事务 -->
+	<tx:annotation-driven  transaction-manager="transactionManager" />
 
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
