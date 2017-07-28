@@ -24,14 +24,14 @@ public class ConfigController {
         ModelAndView mav = new ModelAndView();
         Config config = configService.getPropertyById(id);
         mav.setViewName("property/info");
-        mav.addObject("property",config);
+        mav.addObject("property", config);
         return mav;
     }
 
     @RequestMapping("/search")
     public ModelAndView getPropertyByProjectIdAndGroupName(long projectId, String groupName) {
         ModelAndView mav = new ModelAndView();
-        List<Config> list = configService.getPropertyByProjectIdAndGroupName(projectId, groupName,null);
+        List<Config> list = configService.getPropertyByProjectIdAndGroupName(projectId, groupName, null);
         mav.addObject("list", list);
         mav.setViewName("property/list");
         return mav;
@@ -56,11 +56,11 @@ public class ConfigController {
     @RequestMapping("/save")
     public ModelAndView save(Long projectId, String groupName, String data) {
         ModelAndView mav = new ModelAndView("redirect:/");
-        configService.save(biuldConfig(projectId, groupName, data), data);
+        configService.save(buildConfig(projectId, groupName), data);
         return mav;
     }
 
-    private Config biuldConfig(Long projectId, String groupName, String data) {
+    private Config buildConfig(Long projectId, String groupName) {
         Config config = new Config();
         config.setProjectId(projectId);
         config.setGroupName(groupName);
