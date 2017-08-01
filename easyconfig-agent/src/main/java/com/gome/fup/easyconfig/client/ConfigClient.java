@@ -11,6 +11,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.Properties;
@@ -18,7 +19,10 @@ import java.util.Properties;
 /**
  * Created by fupeng-ds on 2017/7/21.
  */
+@ChannelHandler.Sharable
 public class ConfigClient extends SimpleChannelInboundHandler<Response> {
+
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     private final Object obj = new Object();
 
@@ -60,7 +64,7 @@ public class ConfigClient extends SimpleChannelInboundHandler<Response> {
                 future.channel().closeFuture().sync();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             group.shutdownGracefully();
         }
