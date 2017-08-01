@@ -9,14 +9,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>propertyhelper</title>
+    <title>EasyConfig</title>
 </head>
 <body>
   <form action="<%=request.getContextPath()%>/search" method="post">
-    项目编号:<input name="projectId" value=""><br>
-    分组名称:<input name="groupName" value=""><br>
-    <input type="submit" value="查询">
-    <input type="button" id="add" value="新建" onclick="addProperty()">
+    <table>
+      <thead>EasyConfig</thead>
+      <tbody>
+        <tr>
+          <td>项目编号:</td>
+          <td><input name="projectId" value=""></td>
+        </tr>
+        <tr>
+          <td>分组名称:</td>
+          <td><input name="groupName" value=""></td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="查询"></td>
+          <td><input type="button" id="add" value="新建" onclick="addProperty()"></td>
+        </tr>
+      </tbody>
+    </table>
   </form>
 </body>
 </html>
