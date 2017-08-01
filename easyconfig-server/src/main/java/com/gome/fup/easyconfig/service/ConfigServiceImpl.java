@@ -1,6 +1,8 @@
 package com.gome.fup.easyconfig.service;
 
+import com.gome.fup.easyconfig.common.Cache;
 import com.gome.fup.easyconfig.common.Config;
+import com.gome.fup.easyconfig.common.Constant;
 import com.gome.fup.easyconfig.common.Metadata;
 import com.gome.fup.easyconfig.mapper.ConfigMapper;
 import com.gome.fup.easyconfig.mapper.MetadataMapper;
@@ -38,6 +40,8 @@ public class ConfigServiceImpl implements ConfigService {
             propertyMapper.insert(config);
         } else {
             propertyMapper.edit(config);
+            //将config设置为变更状态，存入缓存
+            isChanged(config.getProjectId(), config.getGroupName());
         }
         metadataMapper.deleteByConfigId(config.getId());
         saveMetadata(config.getId(), data);
@@ -65,4 +69,9 @@ public class ConfigServiceImpl implements ConfigService {
     public List<Config> queryConfigByParam(String projectId, String groupName) {
         return propertyMapper.queryConfigByParam(projectId, groupName);
     }
+
+    private void isChanged(String projectId, String groupName) {
+        Cache.put(projectId + Constant.SEPARATE_SYMBOL + groupName, true);
+    }
+
 }
