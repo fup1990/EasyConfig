@@ -15,7 +15,11 @@
 
 	<bean id="EasyPropertyPlaceholderConfigurer" class="com.gome.fup.easyconfig.config.EasyPropertyPlaceholderConfigurer">
 		<property name="configUtil" ref="configUtil" />
-		<property name="projectId" value="12" />
-		<property name="groupName" value="test1" />
+		<property name="projectId" value="123" />
+		<property name="groupName" value="test12" />
+	</bean>
+
+	<bean id="demo" class="com.gome.fup.easyconfig.DemoController">
+		<property name="str" value="${123}" />
 	</bean>
 </beans>
