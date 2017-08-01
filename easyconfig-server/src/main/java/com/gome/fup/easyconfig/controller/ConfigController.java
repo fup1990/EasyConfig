@@ -31,7 +31,7 @@ public class ConfigController {
     @RequestMapping("/search")
     public ModelAndView getPropertyByProjectIdAndGroupName(String projectId, String groupName) {
         ModelAndView mav = new ModelAndView();
-        List<Config> list = configService.getPropertyByProjectIdAndGroupName(projectId, groupName, null);
+        List<Config> list = configService.queryConfigByParam(projectId, groupName);
         mav.addObject("list", list);
         mav.setViewName("property/list");
         return mav;

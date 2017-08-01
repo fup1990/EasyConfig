@@ -17,4 +17,6 @@ public interface ConfigMapper {
     void insert(Config config);
 
     void edit(Config config);
+
+    List<Config> queryConfigByParam(@Param("projectId") String projectId, @Param("groupName") String groupName);
 }

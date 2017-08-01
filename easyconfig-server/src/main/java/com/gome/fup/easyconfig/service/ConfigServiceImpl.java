@@ -60,4 +60,9 @@ public class ConfigServiceImpl implements ConfigService {
     public void edit(Config config) {
         propertyMapper.edit(config);
     }
+
+    @Override
+    public List<Config> queryConfigByParam(String projectId, String groupName) {
+        return propertyMapper.queryConfigByParam(projectId, groupName);
+    }
 }

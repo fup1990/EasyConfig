@@ -16,4 +16,6 @@ public interface ConfigService {
     void save(Config config, String data);
 
     void edit(Config config);
+
+    List<Config> queryConfigByParam(String projectId, String groupName);
 }

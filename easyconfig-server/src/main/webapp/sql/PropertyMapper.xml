@@ -49,7 +49,7 @@
                 AND c.projectId = #{projectId}
             </if>
             <if test="groupName != '' and groupName != null">
-                AND c.groupName LIKE CONCAT('%',#{groupName},'%')
+                AND c.groupName = #{groupName}
             </if>
             <if test="key != '' and key != null">
                 AND m.key_ = #{key}
@@ -96,4 +96,20 @@
             id = #{id}
         </where>
     </update>
+
+    <select id="queryConfigByParam"  resultMap="config">
+        SELECT
+        <include refid="sql_column" />
+        FROM
+        config c
+        <include refid="sql_join" />
+        WHERE
+        1 = 1
+        <if test="projectId != '' and projectId != null">
+            AND c.projectId = #{projectId}
+        </if>
+        <if test="groupName != '' and groupName != null">
+            AND c.groupName LIKE CONCAT('%',#{groupName},'%')
+        </if>
+    </select>
 </mapper>
