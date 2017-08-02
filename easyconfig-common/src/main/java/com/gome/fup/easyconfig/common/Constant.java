@@ -6,4 +6,5 @@ package com.gome.fup.easyconfig.common;
 public class Constant {
 
     public static final String  SEPARATE_SYMBOL = "_";
+
 }
