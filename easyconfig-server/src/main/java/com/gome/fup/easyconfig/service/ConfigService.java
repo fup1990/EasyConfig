@@ -18,4 +18,6 @@ public interface ConfigService {
     void edit(Config config);
 
     List<Config> queryConfigByParam(String projectId, String groupName);
+
+    List<Config> search(String projectId, String groupName);
 }

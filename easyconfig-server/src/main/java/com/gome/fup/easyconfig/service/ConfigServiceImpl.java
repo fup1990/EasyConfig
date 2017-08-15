@@ -70,6 +70,11 @@ public class ConfigServiceImpl implements ConfigService {
         return propertyMapper.queryConfigByParam(projectId, groupName);
     }
 
+    @Override
+    public List<Config> search(String projectId, String groupName) {
+        return propertyMapper.search(projectId, groupName);
+    }
+
     private void isChanged(String projectId, String groupName) {
         Cache.put(projectId + Constant.SEPARATE_SYMBOL + groupName, true);
     }

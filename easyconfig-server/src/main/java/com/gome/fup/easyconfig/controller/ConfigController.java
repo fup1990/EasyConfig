@@ -5,6 +5,7 @@ import com.gome.fup.easyconfig.service.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -13,8 +14,8 @@ import java.util.List;
  * 配置管理Controller
  * Created by fupeng-ds on 2017/6/13.
  */
-@Controller
-public class ConfigController {
+@RestController
+public class ConfigController extends AbstractController{
 
     @Autowired
     private ConfigService configService;
@@ -29,12 +30,9 @@ public class ConfigController {
     }
 
     @RequestMapping("/search")
-    public ModelAndView getPropertyByProjectIdAndGroupName(String projectId, String groupName) {
-        ModelAndView mav = new ModelAndView();
-        List<Config> list = configService.queryConfigByParam(projectId, groupName);
-        mav.addObject("list", list);
-        mav.setViewName("property/list");
-        return mav;
+    public String getPropertyByProjectIdAndGroupName(String projectId, String groupName) {
+        List<Config> list = configService.search(projectId, groupName);
+        return toJson(list);
     }
 
     @RequestMapping("/edit")

@@ -112,4 +112,21 @@
             AND c.groupName LIKE CONCAT('%',#{groupName},'%')
         </if>
     </select>
+
+    <select id="search"  resultType="com.gome.fup.easyconfig.common.Config">
+        SELECT
+            c.id AS id,
+            c.projectId AS projectId,
+            c.groupName AS groupName
+        FROM
+        config c
+        WHERE
+        1 = 1
+        <if test="projectId != '' and projectId != null">
+            AND c.projectId = #{projectId}
+        </if>
+        <if test="groupName != '' and groupName != null">
+            AND c.groupName = #{groupName}
+        </if>
+    </select>
 </mapper>
