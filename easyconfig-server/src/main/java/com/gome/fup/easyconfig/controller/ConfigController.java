@@ -52,10 +52,13 @@ public class ConfigController extends AbstractController{
     }
 
     @RequestMapping("/save")
-    public ModelAndView save(Long id, String projectId, String groupName, String data) {
-        ModelAndView mav = new ModelAndView("redirect:/");
-        configService.save(buildConfig(id, projectId, groupName), data);
-        return mav;
+    public Object save(Long id, String projectId, String groupName, String data) {
+        try {
+            configService.save(buildConfig(id, projectId, groupName), data);
+            return success(null);
+        } catch (Exception e) {
+            return fail();
+        }
     }
 
     private Config buildConfig(Long id, String projectId, String groupName) {

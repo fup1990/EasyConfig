@@ -29,4 +29,10 @@ public class AbstractController {
         return toJson(response);
     }
 
+    protected Object fail() {
+        HttpResponse response = new HttpResponse();
+        response.setStatus(400);
+        return toJson(response);
+    }
+
 }
