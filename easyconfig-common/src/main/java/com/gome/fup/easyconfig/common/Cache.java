@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class Cache {
 
-    private final static Map<String, Object> cache = new ConcurrentHashMap<>();
+    private final static Map<String, Object> cache = new ConcurrentHashMap<String, Object>();
 
     public static void put(String key, Object value) {
         cache.put(key, value);
