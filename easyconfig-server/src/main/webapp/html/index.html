@@ -2,28 +2,25 @@
 <html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
         <title>EasyConfig</title>
     </head>
-    <body id="body_all">
+    <body>
     <div id="total">
-        <form id="form_search">
-            <table>
-                <tr>
-                    <td>项目编号:</td>
-                    <td><input name="projectId" id="projectId" ref="val_projectId"></td>
-                </tr>
-                <tr>
-                    <td>分组名称:</td>
-                    <td><input name="groupName" id="groupName" ref="val_groupName"></td>
-                </tr>
-                <tr>
-                    <td><input type="button" id="search" value="查询" v-on:click="search_config"></td>
-                    <td><input type="button" id="add" value="新建" v-on:click="add_new"></td>
-                </tr>
-            </table>
+        <form role="form" class="form-inline">
+            <div class="form-group">
+                <label for="projectId">项目编号:</label>
+                <input type="text" class="form-control" name="projectId" id="projectId" ref="val_projectId" placeholder="请输入项目编号">
+                <label for="groupName">分组名称:</label>
+                <input type="text" class="form-control" name="groupName" id="groupName" ref="val_groupName" placeholder="请输入分组名称">
+            </div>
         </form>
         <div>
-            <table id="table_list">
+            <input type="button" class="btn btn-default" id="search" value="查询" v-on:click="search_config">
+            <input type="button" class="btn btn-default" id="add" value="新建" v-on:click="add_new">
+        </div>
+        <div>
+            <table id="table_list" class="table table-bordered">
                 <thead>
                     <td>项目ID</td>
                     <td>分组</td>
@@ -42,6 +39,7 @@
     </body>
     <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/js/vue.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script>
         var vue = new Vue({
             el: '#total',
