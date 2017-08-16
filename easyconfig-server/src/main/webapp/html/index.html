@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>EasyConfig</title>
+    </head>
+    <body id="body_all">
+    <div id="total">
+        <form id="form_search">
+            <table>
+                <tr>
+                    <td>项目编号:</td>
+                    <td><input name="projectId" id="projectId" ref="val_projectId"></td>
+                </tr>
+                <tr>
+                    <td>分组名称:</td>
+                    <td><input name="groupName" id="groupName" ref="val_groupName"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" id="search" value="查询" v-on:click="search_config"></td>
+                    <td><input type="button" id="add" value="新建" v-on:click="add_new"></td>
+                </tr>
+            </table>
+        </form>
+        <div>
+            <table id="table_list">
+                <thead>
+                    <td>项目ID</td>
+                    <td>分组</td>
+                    <td>操作</td>
+                </thead>
+                <tbody>
+                    <tr v-for="config in _self.list_config">
+                        <td>{{config.projectId}}</td>
+                        <td>{{config.groupName}}</td>
+                        <td>查看</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </body>
+    <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="/js/vue.min.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '#total',
+            data: {
+                val_projectId: null,
+                val_groupName: null,
+                list_config: []
+            },
+            methods: {
+                add_new: function() {
+                    alert("abc");
+                },
+                search_config: function() {
+                    var _self = this;
+                    _self.val_projectId = _self.$refs.val_projectId.value;
+                    _self.val_groupName = _self.$refs.val_groupName.value;
+                    $.ajax({
+                        type: "post",
+                        url: "http://localhost:8088/search",
+                        data: {
+                            projectId : this.val_projectId,
+                            groupName : this.val_groupName
+                        },
+                        success: function(data) {
+                            var json = JSON.parse(data);
+                            _self.list_config = json.data;
+                            console.log(_self.list_config)
+                        }
+                    })
+                }
+            }
+        });
+    </script>
+</html>
