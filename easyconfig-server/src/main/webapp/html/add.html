@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <title>新建</title>
+</head>
+<body>
+    <div id="add_total">
+        <form role="form">
+            <div class="form-group">
+                <label for="add_projectId">项目编号:</label>&nbsp;&nbsp;
+                <input type="text" class="form-control" name="projectId" id="add_projectId" ref="add_projectId" placeholder="请输入项目编号">&nbsp;&nbsp;
+                <label for="add_groupName">分组名称:</label>&nbsp;&nbsp;
+                <input type="text" class="form-control" name="groupName" id="add_groupName" ref="add_groupName" placeholder="请输入分组名称">&nbsp;&nbsp;
+                <label for="add_data">文本框</label>&nbsp;&nbsp;
+                <textarea class="form-control" name="data" id="add_data" ref="add_data" rows="5" placeholder="请输入配置信息"></textarea>
+            </div>
+        </form>
+        <br />
+        <div>
+            <input type="button" class="btn btn-default" id="search" value="保存" v-on:click="add_save">&nbsp;&nbsp;
+            <input type="button" class="btn btn-default" id="add" value="取消" v-on:click="add_cancel">&nbsp;&nbsp;
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/js/vue.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/layer.js"></script>
+<script>
+    var vue = new Vue({
+        el: '#add_total',
+        data: {
+            add_projectId: null,
+            add_groupName: null,
+            add_data: null
+        },
+        methods: {
+            add_save: function() {
+                var _self = this;
+                _self.add_projectId = _self.$refs.add_projectId.value;
+                _self.add_groupName = _self.$refs.add_groupName.value;
+                _self.add_data = _self.$refs.add_data.value;
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8088/save",
+                    data: {
+                        projectId : this.add_projectId,
+                        groupName : this.add_groupName,
+                        data : this.add_data
+                    },
+                    success: function(data) {
+                        var json = JSON.parse(data);
+                        console.log(json)
+                        if(json.status == 200) {
+                            window.parent.location.reload(); //刷新父页面
+                            this.add_cancel();
+                        }
+                    }
+                })
+            },
+            add_cancel: function() {
+                var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                parent.layer.close(index);  // 关闭layer
+            }
+        }
+    })
+</script>
+</html>

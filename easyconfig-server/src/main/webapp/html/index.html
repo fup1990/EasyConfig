@@ -7,18 +7,22 @@
     </head>
     <body>
     <div id="total">
-        <form role="form" class="form-inline">
-            <div class="form-group">
-                <label for="projectId">项目编号:</label>
-                <input type="text" class="form-control" name="projectId" id="projectId" ref="val_projectId" placeholder="请输入项目编号">
-                <label for="groupName">分组名称:</label>
-                <input type="text" class="form-control" name="groupName" id="groupName" ref="val_groupName" placeholder="请输入分组名称">
-            </div>
-        </form>
         <div>
-            <input type="button" class="btn btn-default" id="search" value="查询" v-on:click="search_config">
-            <input type="button" class="btn btn-default" id="add" value="新建" v-on:click="add_new">
+            <form role="form" class="form-inline">
+                <div class="form-group">
+                    <label for="projectId">项目编号:</label>&nbsp;&nbsp;
+                    <input type="text" class="form-control" name="projectId" id="projectId" ref="val_projectId" placeholder="请输入项目编号">&nbsp;&nbsp;
+                    <label for="groupName">分组名称:</label>&nbsp;&nbsp;
+                    <input type="text" class="form-control" name="groupName" id="groupName" ref="val_groupName" placeholder="请输入分组名称">&nbsp;&nbsp;
+                </div>
+            </form>
         </div>
+        <br />
+        <div>
+            <input type="button" class="btn btn-default" id="search" value="查询" v-on:click="search_config">&nbsp;&nbsp;
+            <input type="button" class="btn btn-default" id="add" value="新建" v-on:click="add_new">&nbsp;&nbsp;
+        </div>
+        <br />
         <div>
             <table id="table_list" class="table table-bordered">
                 <thead>
@@ -27,10 +31,10 @@
                     <td>操作</td>
                 </thead>
                 <tbody>
-                    <tr v-for="config in _self.list_config">
+                    <tr v-for="config in list_config">
                         <td>{{config.projectId}}</td>
                         <td>{{config.groupName}}</td>
-                        <td>查看</td>
+                        <td><a>查看</a>&nbsp;&nbsp;<a>编辑</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -40,6 +44,7 @@
     <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/js/vue.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/layer.js"></script>
     <script>
         var vue = new Vue({
             el: '#total',
@@ -50,7 +55,14 @@
             },
             methods: {
                 add_new: function() {
-                    alert("abc");
+                    layer.open({
+                        type: 2,
+                        title: '新建配置',
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['580px', '90%'],
+                        content: '/html/add.html'
+                    });
                 },
                 search_config: function() {
                     var _self = this;
