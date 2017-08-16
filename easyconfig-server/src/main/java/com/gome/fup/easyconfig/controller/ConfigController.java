@@ -30,9 +30,9 @@ public class ConfigController extends AbstractController{
     }
 
     @RequestMapping("/search")
-    public String getPropertyByProjectIdAndGroupName(String projectId, String groupName) {
+    public Object getPropertyByProjectIdAndGroupName(String projectId, String groupName) {
         List<Config> list = configService.search(projectId, groupName);
-        return toJson(list);
+        return success(list);
     }
 
     @RequestMapping("/edit")
