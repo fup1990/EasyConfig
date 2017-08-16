@@ -34,6 +34,7 @@
 </body>
 </html>
 <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/js/vue.min.js"></script>
 <script type="text/javascript">
   function addProperty() {
     window.location.href='<%=request.getContextPath()%>/add';
