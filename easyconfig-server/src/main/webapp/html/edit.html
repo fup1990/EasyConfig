@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <title>编辑</title>
+</head>
+<body>
+    <div id="edit_total">
+        <form role="form">
+            <div class="form-group">
+                <label for="edit_projectId">项目编号:</label>&nbsp;&nbsp;
+                <input type="text" class="form-control" id="edit_projectId" v-model="edit_projectId">&nbsp;&nbsp;
+                <label for="edit_groupName">分组名称:</label>&nbsp;&nbsp;
+                <input type="text" class="form-control" id="edit_groupName" v-model="edit_groupName">&nbsp;&nbsp;
+                <label for="edit_data">文本框</label>&nbsp;&nbsp;
+                <textarea class="form-control" id="edit_data" v-model="edit_data" rows="5"></textarea>
+            </div>
+        </form>
+        <br />
+        <div>
+            <input type="button" class="btn btn-default" id="edit" value="保存" v-on:click="edit_save">&nbsp;&nbsp;
+            <input type="button" class="btn btn-default" id="cancel" value="取消" v-on:click="edit_cancel">&nbsp;&nbsp;
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/js/vue.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/layer.js"></script>
+<script>
+    var edit_vue = new Vue({
+        el: '#edit_total',
+        data: {
+            edit_projectId: null,
+            edit_groupName: null,
+            edit_data: "",
+            edit_config_id: null
+        },
+        mounted: function() {
+            var id = parent.vue.val_config_id;
+            $.ajax({
+                type: "post",
+                url: "http://localhost:8088/info",
+                data: {
+                    id : id
+                },
+                success: function(data) {
+                    var json = JSON.parse(data);
+                    console.log(json);
+                    if(json.status == 200) {
+                        edit_vue.edit_projectId = json.data.projectId;
+                        edit_vue.edit_groupName = json.data.groupName;
+                        var list = json.data.metadataList;
+                        for(var i = 0; i < list.length; i++) {
+                            edit_vue.edit_data += list[i].key + "=" + list[i].value + "\r\n";
+                        }
+                    }
+                }
+            })
+        },
+        methods: {
+            edit_save : function() {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8088/save",
+                    data: {
+                        id : parent.vue.val_config_id,
+                        projectId : edit_vue.edit_projectId,
+                        groupName : edit_vue.edit_groupName,
+                        data : edit_vue.edit_data
+                    },
+                    success: function(data) {
+                        var json = JSON.parse(data);
+                        if(json.status == 200) {
+                            parent.vue.search_config();
+                            edit_vue.edit_cancel();
+                        }
+                    }
+                })
+            },
+            edit_cancel : function() {
+                parent.vue.val_config_id = "";
+                var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                parent.layer.close(index);  // 关闭layer
+            }
+        }
+    })
+</script>
+</html>

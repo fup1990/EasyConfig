@@ -99,7 +99,8 @@
                         content: '/html/info.html'
                     });
                 },
-                edit_config: function() {
+                edit_config: function(id) {
+                    vue.val_config_id = id;
                     layer.open({
                         type: 2,
                         title: '编辑配置',
