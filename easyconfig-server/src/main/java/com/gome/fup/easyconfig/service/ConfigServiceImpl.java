@@ -50,8 +50,8 @@ public class ConfigServiceImpl implements ConfigService {
     }
 
     private void saveMetadata(Long configId, String data) {
-        String separator = System.getProperty("line.separator", "\n");
-        String[] entrySet = data.trim().split(separator);
+        //String separator = System.getProperty("line.separator", "\n");
+        String[] entrySet = data.trim().split("\n");
         for (String entry : entrySet) {
             String[] split = entry.split("=");
             Metadata metadata = new Metadata();
