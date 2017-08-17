@@ -42,6 +42,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <input type="hidden" id="config_id" ref="val_config_id" value="">
             </div>
             <div class="page_div"></div>
         </div>
@@ -56,7 +57,8 @@
             data: {
                 val_projectId: null,
                 val_groupName: null,
-                list_config: []
+                list_config: [],
+                val_config_id: null
             },
             methods: {
                 add_new: function() {
@@ -86,7 +88,8 @@
                         }
                     })
                 },
-                info_config: function() {
+                info_config: function(id) {
+                    vue.val_config_id = id;
                     layer.open({
                         type: 2,
                         title: '查询配置',

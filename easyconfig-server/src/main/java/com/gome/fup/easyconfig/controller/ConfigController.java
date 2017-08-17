@@ -21,12 +21,9 @@ public class ConfigController extends AbstractController{
     private ConfigService configService;
 
     @RequestMapping("/info")
-    public ModelAndView getPropertyById(long id) {
-        ModelAndView mav = new ModelAndView();
+    public Object getPropertyById(long id) {
         Config config = configService.getPropertyById(id);
-        mav.setViewName("property/info");
-        mav.addObject("property", config);
-        return mav;
+        return success(config);
     }
 
     @RequestMapping("/search")
