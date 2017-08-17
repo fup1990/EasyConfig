@@ -129,4 +129,12 @@
             AND c.groupName = #{groupName}
         </if>
     </select>
+
+    <delete id="deleteById">
+        DELETE
+        FROM
+            config
+        WHERE
+            id = #{id}
+    </delete>
 </mapper>
