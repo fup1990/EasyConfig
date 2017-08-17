@@ -52,10 +52,9 @@
                     },
                     success: function(data) {
                         var json = JSON.parse(data);
-                        console.log(json)
                         if(json.status == 200) {
-                            window.parent.location.reload(); //刷新父页面
-                            this.add_cancel();
+                            parent.vue.search_config();
+                            vue.add_cancel();
                         }
                     }
                 })
