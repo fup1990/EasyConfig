@@ -75,6 +75,13 @@ public class ConfigServiceImpl implements ConfigService {
         return propertyMapper.search(projectId, groupName);
     }
 
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        metadataMapper.deleteByConfigId(id);
+        propertyMapper.deleteById(id);
+    }
+
     private void isChanged(String projectId, String groupName) {
         Cache.put(projectId + Constant.SEPARATE_SYMBOL + groupName, true);
     }

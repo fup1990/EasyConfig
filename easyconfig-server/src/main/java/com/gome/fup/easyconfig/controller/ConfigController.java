@@ -61,6 +61,16 @@ public class ConfigController extends AbstractController{
         }
     }
 
+    @RequestMapping("/delete")
+    public Object delete(Long id) {
+        try {
+            configService.delete(id);
+            return success(null);
+        } catch (Exception e) {
+            return fail();
+        }
+    }
+
     private Config buildConfig(Long id, String projectId, String groupName) {
         Config config = new Config();
         config.setId(id);

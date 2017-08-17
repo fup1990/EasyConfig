@@ -20,4 +20,6 @@ public interface ConfigService {
     List<Config> queryConfigByParam(String projectId, String groupName);
 
     List<Config> search(String projectId, String groupName);
+
+    void delete(Long id);
 }

@@ -21,4 +21,6 @@ public interface ConfigMapper {
     List<Config> queryConfigByParam(@Param("projectId") String projectId, @Param("groupName") String groupName);
 
     List<Config> search(@Param("projectId") String projectId, @Param("groupName") String groupName);
+
+    void deleteById(@Param("id") Long id);
 }
