@@ -1,5 +1,7 @@
 package com.gome.fup.easyconfig.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.gome.fup.easyconfig.common.Cache;
 import com.gome.fup.easyconfig.common.Config;
 import com.gome.fup.easyconfig.common.Constant;
@@ -84,6 +86,12 @@ public class ConfigServiceImpl implements ConfigService {
 
     private void isChanged(String projectId, String groupName) {
         Cache.put(projectId + Constant.SEPARATE_SYMBOL + groupName, true);
+    }
+
+    public PageInfo<Config> page(String projectId, String groupName) {
+        PageHelper.startPage(1, 10);
+        List<Config> configs = propertyMapper.queryConfigByParam(projectId, groupName);
+        return new PageInfo<>(configs);
     }
 
 }

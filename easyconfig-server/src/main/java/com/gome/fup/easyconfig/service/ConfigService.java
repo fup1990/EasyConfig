@@ -1,5 +1,6 @@
 package com.gome.fup.easyconfig.service;
 
+import com.github.pagehelper.PageInfo;
 import com.gome.fup.easyconfig.common.Config;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface ConfigService {
     List<Config> search(String projectId, String groupName);
 
     void delete(Long id);
+
+    public PageInfo<Config> page(String projectId, String groupName);
 }
