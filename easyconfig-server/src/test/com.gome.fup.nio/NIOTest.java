@@ -42,13 +42,16 @@ public class NIOTest {
     public void server() throws IOException {
         Selector selector = Selector.open();
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+        //设置为非阻塞模式；只有在非阻塞模式下，才可以注册到Selector
         serverSocketChannel.configureBlocking(false);
         serverSocketChannel.socket().bind(new InetSocketAddress("127.0.0.1", 8080));
+        //将serverSocketChannel注册到Selector，设置监听类型
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
         LOGGER.info("Server: socket server started.");
         while (true) {
             int key = selector.select();
             if (key > 0) {
+                //获取selector上被触发的SelectionKey集合
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
                 Iterator<SelectionKey> iterator = selectionKeys.iterator();
                 while (iterator.hasNext()) {
@@ -109,6 +112,7 @@ public class NIOTest {
             ByteBuffer buffer = (ByteBuffer) key.attachment();
             buffer.flip();
             SocketChannel socketChannel = (SocketChannel) key.channel();
+            //将ByteBuffer中的数据写入socketChannel管道
             socketChannel.write(buffer);
             if (buffer.hasRemaining()) {
                 key.interestOps(SelectionKey.OP_READ);
@@ -121,12 +125,15 @@ public class NIOTest {
     public void client() throws IOException {
         SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 8080));
         socketChannel.configureBlocking(false);
+        //创建ByteBuffer，设置其容量为1024
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         socketChannel.write(ByteBuffer.wrap("test".getBytes()));
         while (true) {
             buffer.clear();
+            //从socketChannel中读数据到ByteBuffer中
             int read = socketChannel.read(buffer);
             if (read > 0) {
+                //将Buffer从写模式切换到读模式
                 buffer.flip();
                 LOGGER.info("Client: readBytes = " + read);
                 LOGGER.info("Client: data = " + new String(buffer.array(), 0, read));
